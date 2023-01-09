@@ -2,7 +2,7 @@ package io.lmayo.tajo.domain
 
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.text.MatchesPattern.matchesPattern
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
