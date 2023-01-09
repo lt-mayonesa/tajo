@@ -14,4 +14,8 @@ class ShortURLGeneratorService(
         TODO()
     }
 
+    fun find(code: String): URI? {
+        TODO("Not yet implemented")
+    }
+
 }
