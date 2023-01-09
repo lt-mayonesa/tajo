@@ -1,9 +1,9 @@
 package io.lmayo.tajo.api
 
 import com.ninjasquad.springmockk.MockkBean
-import io.lmayo.tajo.domain.ShortURLGeneratorService
-import io.mockk.every
-import org.junit.jupiter.api.Assertions.*
+import io.lmayo.tajo.domain.Code
+import io.lmayo.tajo.domain.ShortURLService
+import io.mockk.coEvery
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
@@ -16,11 +16,11 @@ class URLAccessControllerTest(
 ) {
 
     @MockkBean
-    private lateinit var shortURLGeneratorService: ShortURLGeneratorService
+    private lateinit var shortURLService: ShortURLService
 
     @Test
     fun `short url for code exists`() {
-        every { shortURLGeneratorService.find("sarasa") } returns
+        coEvery { shortURLService.find(Code("sarasa")) } returns
                 URI.create("https://google.com")
 
         webTestClient.get()
@@ -32,7 +32,7 @@ class URLAccessControllerTest(
 
     @Test
     fun `short url for code does not exist`() {
-        every { shortURLGeneratorService.find("sarasa") } returns null
+        coEvery { shortURLService.find(Code("sarasa")) } returns null
 
         webTestClient.get()
             .uri("/sarasa")

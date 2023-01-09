@@ -3,7 +3,7 @@ package io.lmayo.tajo
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication(scanBasePackages = ["io.lmayo.tajo.api", "io.lmayo.tajo.domain"])
+@SpringBootApplication
 class TajoApplication
 
 fun main(args: Array<String>) {

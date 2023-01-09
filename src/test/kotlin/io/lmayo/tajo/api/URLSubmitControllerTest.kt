@@ -1,8 +1,9 @@
 package io.lmayo.tajo.api
 
 import com.ninjasquad.springmockk.MockkBean
-import io.lmayo.tajo.domain.ShortURLGeneratorService
-import io.mockk.every
+import io.lmayo.tajo.domain.Code
+import io.lmayo.tajo.domain.ShortURLService
+import io.mockk.coEvery
 import kotlinx.coroutines.flow.flowOf
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -22,12 +23,12 @@ class URLSubmitControllerTest(
 ) {
 
     @MockkBean
-    private lateinit var shortURLGeneratorService: ShortURLGeneratorService
+    private lateinit var shortURLService: ShortURLService
 
     @Test
     fun `submit payload without shortcode`() {
         val targetUrl = "https://google.com"
-        every { shortURLGeneratorService.generate(URI.create(targetUrl)) } returns
+        coEvery { shortURLService.generate(URI.create(targetUrl)) } returns
                 URI.create("https://locahost:8080/short")
 
 
@@ -45,7 +46,7 @@ class URLSubmitControllerTest(
     fun `submit payload with shortcode`() {
         val targetUrl = "https://google.com"
         val shortCode = "shortcode"
-        every { shortURLGeneratorService.generate(URI.create(targetUrl), shortCode) } returns
+        coEvery { shortURLService.generate(URI.create(targetUrl), Code(shortCode)) } returns
                 URI.create("https://locahost:8080/$shortCode")
 
 
